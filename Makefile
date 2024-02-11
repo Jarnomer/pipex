@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/11 08:49:08 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/11 15:47:48 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,6 +140,20 @@ reb: fclean bonus
 nm:
 	@$(NORMC) $(SRCS) $(SRCS_BNS)
 	@$(NORMH) $(NAME).h $(BONUSDIR)/$(NAME)$(BNSSUFFIX).h
+
+pub: stat
+	$(eval confirm := $(shell read -p "Push all changes? [y/n] " -r; echo $$REPLY))
+	@if [ $(confirm) = "y" ]; then \
+		read -p "Enter message > " message; \
+		git add . ; git commit -m "$$message" ; git push; \
+		echo "$(G)$(B)\nALL CHANGES PUSHED!$(T)\n"; else \
+		echo "\n$(Y)$(B)Exiting...$(T)\n"; exit 0 ; fi
+
+stat:
+	$(eval gitstatus := $(shell git status -s))
+	@if [ -z "$(gitstatus)" ]; then \
+		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 0; else \
+		git status -s; fi
 
 $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS):
 	@mkdir -p $@
