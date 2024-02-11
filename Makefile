@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/10 23:06:19 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/11 08:49:08 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ DEBUGFLG	=	.debug
 RM			=	rm -rf
 AR			=	ar -rcs
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 SCREENCLR	=	@printf "\033c"
 SLEEP		=	@sleep .25
 
