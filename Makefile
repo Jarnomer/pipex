@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/11 15:47:48 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/11 15:58:19 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,10 +81,8 @@ $(OBJSDIR)/%.o: %.c | $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS)
 	@if ! $(CC) $(CFLAGS) $(DEPFLAGS) $< -o $@ 2> $(ERRORTXT); then \
 		echo "$(R)$(B)\nMAKEFILE TERMINATED!\n$(F)$(T)\n"; \
 		echo "$(V)Unable to create object file: $(R)$(B)$@$(T)\n"; \
-		echo "$(R)$(B)ERROR\t>>>>>>>>$(T)$(Y)\n"; \
-		sed '$$d' $(ERRORTXT); \
-		echo "$(R)$(B)\n$(F)\nExiting...$(T)\n"; \
-		exit 1; fi
+		echo "$(R)$(B)ERROR\t>>>>>>>>$(T)$(Y)\n"; sed '$$d' $(ERRORTXT); \
+		echo "$(R)$(B)\n$(F)\nExiting...$(T)\n"; exit 1 ; fi
 	@if [ $(SUCCESS) ]; then \
 		$(eval SUCCESS=$(shell echo $$(($(SUCCESS)+1)))) \
 		echo "$(T)$(V) $<$(T)\t$(C)>>>>>>>>\t$(G)$(B)$@$(T)"; else \
@@ -137,9 +135,15 @@ re: fclean all
 
 reb: fclean bonus
 
-nm:
-	@$(NORMC) $(SRCS) $(SRCS_BNS)
-	@$(NORMH) $(NAME).h $(BONUSDIR)/$(NAME)$(BNSSUFFIX).h
+nmm:
+	@$(NORMC) $(SRCS)
+	@$(NORMH) $(NAME).h
+
+nmb:
+	@$(NORMC) $(SRCS_BNS)
+	@$(NORMH) $(BONUSDIR)/$(NAME)$(BNSSUFFIX).h
+
+nm: nmm nmb
 
 pub: stat
 	$(eval confirm := $(shell read -p "Push all changes? [y/n] " -r; echo $$REPLY))
@@ -152,8 +156,8 @@ pub: stat
 stat:
 	$(eval gitstatus := $(shell git status -s))
 	@if [ -z "$(gitstatus)" ]; then \
-		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 0; else \
-		git status -s; fi
+		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 1 ; fi
+	@git status -s
 
 $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS):
 	@mkdir -p $@
@@ -161,4 +165,4 @@ $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS):
 $(DEPS):
 	include $(wildcard $(DEPS))
 
-.PHONY: all bonus debug clean fclean re reb nm
+.PHONY: all bonus debug clean fclean re reb nmm nmb nm pub stat
