@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/11 15:58:19 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/11 16:34:04 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,9 +154,9 @@ pub: stat
 		echo "\n$(Y)$(B)Exiting...$(T)\n"; exit 0 ; fi
 
 stat:
-	$(eval gitstatus := $(shell git status -s))
-	@if [ -z "$(gitstatus)" ]; then \
-		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 1 ; fi
+	$(eval status := $(shell git status -s))
+	@if [ -z "$(status)" ]; then \
+		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 0 ; fi
 	@git status -s
 
 $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS):

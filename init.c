@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:56:43 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/11 08:44:28 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:34:40 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_pipex(int argc, char **argv, char **envp, t_pipex *ppx)
 	ppx->argv = argv;
 	ppx->envp = envp;
 	ppx->ecode = NOERROR;
+	ft_bzero(ppx, sizeof(*ppx));
 	init_values(ppx);
 	open_files(ppx);
 	ppx->pids = ft_calloc(sizeof(ppx->pids), (ppx->cmds + 1));
