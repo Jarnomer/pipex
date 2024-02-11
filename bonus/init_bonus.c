@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:56:43 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 22:31:20 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/11 08:44:17 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	open_files(t_pipex *ppx)
 		error_logger(ppx->argv[1], ": ", strerror(errno));
 	if (ppx->outfile == -1)
 		error_logger(ppx->argv[ppx->argc - 1], ": ", strerror(errno));
-	if (ppx->infile == -1 && ppx->outfile == -1)
-		error_occured(ERR_FILE, NULL, NULL);
 }
 
 static void	init_values(t_pipex *ppx)
