@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 20:47:01 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 23:01:05 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:47:35 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <string.h>
 # include <errno.h>
 
-# define MSG_ARGC		"./pipex infile cmd1 ... cmdn outfile"
+# define MSG_ARGC		"./pipex infile cmd1 cmd2 ... cmdn outfile"
 # define MSG_HDOC		"./pipex here_doc LIMITER cmd1 ... cmdn outfile"
 # define MSG_CMD		"command not found"
 # define MSG_PERM		"Permission denied"
@@ -38,7 +38,8 @@
 # define MSG_SIGBUS		"Bus error"
 # define MSG_SIGKILL	"Killed"
 # define MSG_SIGABRT	"Abort"
-# define MSG_SIGOTHR	"Unexpected signal"
+# define MSG_SIGTERM	"Terminated"
+# define MSG_SIGOTHR	"Unhandled signal"
 
 # define BOLD_RED		"\033[1;31m"
 # define YELLOW			"\033[0;33m"

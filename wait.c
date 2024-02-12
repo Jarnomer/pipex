@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 22:06:13 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 21:46:47 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:48:55 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	receive_signal(t_pipex *ppx)
 		error_logger(MSG_SIGKILL, "", "");
 	else if (WTERMSIG(ppx->wstat) == SIGABRT)
 		error_logger(MSG_SIGABRT, "", "");
+	else if (WTERMSIG(ppx->wstat) == SIGTERM)
+		error_logger(MSG_SIGTERM, "", "");
 	else
 		error_logger(MSG_SIGOTHR, "", "");
 	return (ERR_SIG + WTERMSIG(ppx->wstat));

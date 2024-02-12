@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 20:47:01 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 21:42:48 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:47:34 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # define MSG_SIGBUS		"Bus error"
 # define MSG_SIGKILL	"Killed"
 # define MSG_SIGABRT	"Abort"
-# define MSG_SIGOTHR	"Unexpected signal"
+# define MSG_SIGTERM	"Terminated"
+# define MSG_SIGOTHR	"Unhandled signal"
 
 # define BOLD_RED		"\033[1;31m"
 # define YELLOW			"\033[0;33m"
