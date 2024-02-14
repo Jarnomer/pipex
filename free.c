@@ -6,11 +6,33 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:58:43 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 22:40:09 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:55:06 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	free_parser(t_parse **lst)
+{
+	t_parse	*tmp;
+
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
+	}
+	free(*lst);
+	*lst = NULL;
+}
+
+static void	free_single(char **str)
+{
+	if (!str || !*str)
+		return ;
+	free(*str);
+	*str = NULL;
+}
 
 static void	free_douple(char ***arr)
 {
@@ -53,10 +75,15 @@ void	self_destruct(t_pipex *ppx)
 		free_douple(&ppx->cmd);
 	if (ppx->paths != NULL)
 		free_douple(&ppx->paths);
-	free(ppx->exec);
-	ppx->exec = NULL;
-	free(ppx->temp);
-	ppx->temp = NULL;
-	free(ppx->pids);
-	ppx->pids = NULL;
+	if (ppx->args != NULL)
+		free_parser(&ppx->args);
+	if (ppx->exec != NULL)
+		free_single(&ppx->exec);
+	if (ppx->temp != NULL)
+		free_single(&ppx->temp);
+	if (ppx->pids != NULL)
+	{
+		free(ppx->pids);
+		ppx->pids = NULL;
+	}
 }

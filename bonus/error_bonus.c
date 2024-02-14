@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:06:19 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 22:38:29 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:20:46 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ static int	command_error(t_pipex *ppx)
 {
 	int	fd;
 
-	fd = open(ppx->exec, O_DIRECTORY);
+	fd = -1;
 	if (!ppx->cmd || !*ppx->cmd)
 		ppx->error[0] = 1;
+	if (ppx->exec != NULL)
+		fd = open(ppx->exec, O_DIRECTORY);
 	if (fd != -1)
 		ppx->error[1] = 1;
-	if (access(ppx->exec, F_OK) == 0
+	if (ppx->exec != NULL
+		&& access(ppx->exec, F_OK) == 0
 		&& access(ppx->exec, X_OK) == -1)
 		ppx->error[2] = 1;
 	if (ft_strchr(ppx->exec, '/'))
@@ -67,7 +70,7 @@ void	error_occured(int errcode, char *errmsg, t_pipex *ppx)
 		if (errcode == ERR_ARGC)
 		{
 			error_logger("Bad arguments", ": ", MSG_ARGC);
-			error_logger("OR", ": ", MSG_HDOC);
+			error_logger("with here_doc", ": ", MSG_HDOC);
 		}
 		else if (errcode == ERR_CMD)
 			errcode = command_error(ppx);

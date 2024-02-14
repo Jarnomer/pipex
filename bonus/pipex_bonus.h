@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 20:47:01 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/12 17:47:35 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:04:03 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <string.h>
 # include <errno.h>
 
-# define MSG_ARGC		"./pipex infile cmd1 cmd2 ... cmdn outfile"
+# define MSG_ARGC		"./pipex infile cmd1 cmd2 cmd3 ... cmdn outfile"
 # define MSG_HDOC		"./pipex here_doc LIMITER cmd1 ... cmdn outfile"
 # define MSG_CMD		"command not found"
 # define MSG_PERM		"Permission denied"
@@ -66,35 +66,44 @@ enum e_pipe
 	WR_END
 };
 
+typedef struct s_parse
+{
+	char			*content;
+	struct s_parse	*next;
+}	t_parse;
+
 typedef struct s_pipex
 {
-	int		argc;
-	char	**argv;
-	char	**envp;
-	pid_t	*pids;
-	int		ecode;
-	int		wstat;
-	int		error[5];
-	int		pipe[2];
-	int		pipeout;
-	int		infile;
-	int		outfile;
-	int		idx;
-	int		stt;
-	int		cmds;
-	bool	hdoc;
-	int		len;
-	char	*lmtr;
-	char	**cmd;
-	char	**paths;
-	char	*exec;
-	char	*temp;
+	int				argc;
+	char			**argv;
+	char			**envp;
+	pid_t			*pids;
+	int				ecode;
+	int				wstat;
+	int				error[5];
+	int				pipe[2];
+	int				pipeout;
+	int				infile;
+	int				outfile;
+	int				idx;
+	int				stt;
+	int				cmds;
+	bool			hdoc;
+	int				len;
+	char			*lmtr;
+	char			**cmd;
+	char			**paths;
+	char			*exec;
+	char			*temp;
+	struct s_parse	*args;
 }	t_pipex;
 
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *ppx);
 void	read_heredoc(t_pipex *ppx);
 void	child_process(t_pipex *ppx);
 void	wait_children(int status, t_pipex *ppx);
+void	parse_argument(char *argv, t_pipex *ppx);
+void	join_arguments(char c, t_pipex *ppx);
 char	*executable_path(t_pipex *ppx);
 void	close_all_fds(t_pipex *ppx);
 void	self_destruct(t_pipex *ppx);

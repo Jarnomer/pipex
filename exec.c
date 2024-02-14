@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:35:34 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 21:44:06 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:24:07 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 static void	execute_cmd(t_pipex *ppx)
 {
-	ppx->cmd = ft_split(ppx->argv[ppx->stt + ppx->idx], ' ');
-	if (!ppx->cmd)
-		error_occured(ERR_MEM, MSG_MEM, ppx);
+	parse_argument(ppx->argv[ppx->stt + ppx->idx], ppx);
 	ppx->exec = executable_path(ppx);
-	if (execve(ppx->exec, ppx->cmd, ppx->envp) == -1)
+	if (!ppx->cmd || !*ppx->cmd || !ppx->exec
+		|| execve(ppx->exec, ppx->cmd, ppx->envp) == -1)
 		error_occured(ERR_CMD, MSG_CMD, ppx);
 }
 

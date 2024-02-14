@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/11 16:34:04 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/14 15:58:35 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,12 @@ FILES		:=	pipex \
 				exec \
 				wait \
 				path \
+				parse \
+				join \
 				free \
 				error
 
-FILES_BNS	:=	hdoc
+FILES_BNS	:=	hdoc \
 
 SRCS		:=	$(addsuffix .c, $(FILES))
 SRCS_BNS	:=	$(addsuffix $(BNSSUFFIX).c, $(FILES) $(FILES_BNS))
@@ -135,34 +137,10 @@ re: fclean all
 
 reb: fclean bonus
 
-nmm:
-	@$(NORMC) $(SRCS)
-	@$(NORMH) $(NAME).h
-
-nmb:
-	@$(NORMC) $(SRCS_BNS)
-	@$(NORMH) $(BONUSDIR)/$(NAME)$(BNSSUFFIX).h
-
-nm: nmm nmb
-
-pub: stat
-	$(eval confirm := $(shell read -p "Push all changes? [y/n] " -r; echo $$REPLY))
-	@if [ $(confirm) = "y" ]; then \
-		read -p "Enter message > " message; \
-		git add . ; git commit -m "$$message" ; git push; \
-		echo "$(G)$(B)\nALL CHANGES PUSHED!$(T)\n"; else \
-		echo "\n$(Y)$(B)Exiting...$(T)\n"; exit 0 ; fi
-
-stat:
-	$(eval status := $(shell git status -s))
-	@if [ -z "$(status)" ]; then \
-		echo "$(G)$(B)\nNothing to commit$(T)\n"; exit 0 ; fi
-	@git status -s
-
 $(OBJSDIR) $(DEPSDIR) $(OBJSDIR_BNS) $(DEPSDIR_BNS):
 	@mkdir -p $@
 
 $(DEPS):
 	include $(wildcard $(DEPS))
 
-.PHONY: all bonus debug clean fclean re reb nmm nmb nm pub stat
+.PHONY: all bonus debug clean fclean re reb
