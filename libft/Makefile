@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 10:37:44 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/08 17:26:53 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/15 11:15:33 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,14 +63,14 @@ DEPS 		= 	$(SRCS:%.c=$(DEPSDIR)/%.d)
 OBJS 		= 	$(SRCS:%.c=$(OBJSDIR)/%.o)
 DEPFLAGS 	=	-c -MT $@ -MMD -MP -MF $(DEPSDIR)/$*.d
 
-FILL		=	=================================================
-BOLD		=	\033[1m
-RESET		=	\033[0m
-GREEN		=	\033[32m
-VIOLET		=	\033[35m
-CYAN		=	\033[36m
-RED			=	\033[31m
-YELLOW		=	\033[33m
+F		=	=================================================
+B		=	\033[1m		# bold
+T		=	\033[0m		# reset
+G		=	\033[32m	# green
+V		=	\033[35m	# violet
+C		=	\033[36m	# cyan
+R		=	\033[31m	# red
+Y		=	\033[33m	# yellow
 
 all: $(NAME)
 
@@ -79,18 +79,16 @@ $(NAME): start $(OBJS)
 
 $(OBJSDIR)/%.o: %.c | $(OBJSDIR) $(DEPSDIR)
 	@if ! $(CC) $(CFLAGS) $(DEPFLAGS) $< -o $@ 2> $(ERRORTXT); then \
-		echo "$(RED)$(BOLD)\nMAKEFILE TERMINATED!\n$(FILL)$(RESET)\n"; \
-		echo "$(VIOLET)Unable to create object file: $(RED)$(BOLD)$@$(RESET)\n"; \
-		echo "$(RED)$(BOLD)ERROR>>>>>>>>>>>>>>>$(RESET)$(YELLOW)\n"; \
-		sed '$$d' $(ERRORTXT); \
-		echo "$(RED)$(BOLD)\n$(FILL)\nExiting...$(RESET)\n"; \
-		exit 1; fi
+		echo "$(R)$(B)\nMAKEFILE TERMINATED!\n$(FILL)$(T)\n"; \
+		echo "$(V)Unable to create object file: $(R)$(B)$@$(T)\n"; \
+		echo "$(Y)$(B)ERROR\t>>>>>>>>$(T)$(Y)\n"; sed '$$d' $(ERRORTXT); \
+		echo "$(R)$(B)\n$(F)\nExiting...$(T)\n"; exit 1 ; fi
 
 start:
 ifneq ("$(wildcard $(OBJSDIR)/*.o)","")
-	@echo "\n$(GREEN)$(BOLD)$(NAME)$(RESET)$(VIOLET) is up to date!$(RESET)"
+	@echo "\n$(G)$(B)$(NAME)$(T)$(V) is up to date!$(T)"
 else
-	@echo "\n$(VIOLET)Building $(GREEN)$(BOLD)$(NAME)$(RESET)$(VIOLET) binary...$(RESET)"
+	@echo "\n$(V)Building $(G)$(B)$(NAME)$(T)$(V) binary...$(T)"
 endif
 
 clean:
