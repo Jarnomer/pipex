@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/30 15:32:20 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/14 15:58:35 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/15 11:04:37 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,6 @@ OBJS_DEBUG	=	$(SRCS_DEBUG:%.c=$(OBJSDIR)/%.o)
 DEPFLAGS	=	-c -MT $@ -MMD -MP -MF $(DEPSDIR)/$*.d
 DEBUGFLAGS	=	-g -fsanitize=address,undefined,integer \
 				-fdiagnostics-color=always -fansi-escape-codes
-NORMC		=	norminette -R CheckForbiddenSourceHeader
-NORMH		=	norminette -R CheckDefine
 
 F		=	=================================================
 B		=	\033[1m		# bold
