@@ -6,7 +6,7 @@
 #    By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 10:37:44 by jmertane          #+#    #+#              #
-#    Updated: 2024/02/15 11:15:33 by jmertane         ###   ########.fr        #
+#    Updated: 2024/02/15 11:19:04 by jmertane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ $(NAME): start $(OBJS)
 
 $(OBJSDIR)/%.o: %.c | $(OBJSDIR) $(DEPSDIR)
 	@if ! $(CC) $(CFLAGS) $(DEPFLAGS) $< -o $@ 2> $(ERRORTXT); then \
-		echo "$(R)$(B)\nMAKEFILE TERMINATED!\n$(FILL)$(T)\n"; \
+		echo "$(R)$(B)\nMAKEFILE TERMINATED!\n$(F)$(T)\n"; \
 		echo "$(V)Unable to create object file: $(R)$(B)$@$(T)\n"; \
 		echo "$(Y)$(B)ERROR\t>>>>>>>>$(T)$(Y)\n"; sed '$$d' $(ERRORTXT); \
 		echo "$(R)$(B)\n$(F)\nExiting...$(T)\n"; exit 1 ; fi
