@@ -6,7 +6,7 @@
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:56:43 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/14 18:11:59 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/23 07:05:50 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	init_values(t_pipex *ppx)
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *ppx)
 {
 	ft_bzero(ppx, sizeof(*ppx));
-	bzero(ppx->error, 5);
+	ft_bzero(ppx->error, 5);
 	ppx->argc = argc;
 	ppx->argv = argv;
 	ppx->envp = envp;
