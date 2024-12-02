@@ -66,6 +66,14 @@ Will be the same as bash syntax:
 << EOF cat | cat | wc -l >> outfile
 ```
 
+## ♻️ Resources
+
+[franzinette](https://github.com/xicodomingues/francinette) amazing unit test framework for pipex and other 42 projects.
+
+[pipex-tester](https://github.com/vfurmane/pipex-tester) effective base tester that is inline with the subject.
+
+[pipex-error-tester](https://github.com/Jarnomer/pipex-error-tester) my personal tester focusing on error handling.
+
 ## 4️⃣2️⃣ Footer
 
 For my other 42 project and general information, please refer the [landing page](https://github.com/Jarnomer/Hive42).
