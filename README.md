@@ -18,29 +18,43 @@
   <img src="https://img.shields.io/github/last-commit/Jarnomer/pipex/main?style=for-the-badge&color=red" alt="GitHub last commit (branch)">
 </p>
 
-## General
+## 📝 General
 
 Goal of the project is to run multiple `unix` commands with `execve` by creating child processes with `fork` and communicating between them using `pipe`.
 
-For studies perspective I `highly` recommend that you finish the `bonus` part of this project. It will serve you well in `minishell`.
+It also features `redirections` to file descriptors using `dup` and `dup2`.
 
-## Usage
+Project `passes` many of the 42 `testers`, including [franzinette](https://github.com/xicodomingues/francinette) `strict` excluding quotes and backslashes.
 
-Execution needs an `infile` to open, `two` unix `commands` and `outfile` to `truncate` the result:
+## ⚠️ Notice
+
+For studies perspective I `highly` recommend that you finish the `bonus` part of this project.
+
+## 🛠️ Build
+
+GNU `make` and `gcc` are required to build and compile the project.
+
+```bash
+git clone --recurse-submodules https://github.com/Jarnomer/pipex.git pipex
+```
+
+## ⚡ Usage
+
+Pipex needs an `infile` to open, at least `two` unix `commands` and `outfile` to `truncate` the result:
 
 ```bash
 ./pipex "Makefile" cat 'wc -l' outfile
 ```
 
-Will be the same as bash syntax:
+Will be the same as `bash` syntax:
 
 ```bash
 < Makefile cat | wc -l > outfile
 ```
 
-## Bonus
+Additionally `heredoc` with `EOF` and `multiple` unix commands are supported.
 
-Bonus supports `heredoc` and `multiple` unix commands. When heredoc is used, result is `appended` to outfile.
+When heredoc is used, result is `appended` to outfile.
 
 ```bash
 ./pipex here_doc EOF cat cat 'wc -l' outfile
@@ -52,8 +66,10 @@ Will be the same as bash syntax:
 << EOF cat | cat | wc -l >> outfile
 ```
 
-Project `passes` many of the 42 `testers`, including [franzinette](https://github.com/xicodomingues/francinette) `strict` excluding quotes and backslashes.
+## 4️⃣2️⃣ Footer
 
-For other information, please refer the main page.
+For my other 42 project and general information, please refer the [landing page](https://github.com/Jarnomer/Hive42).
+
+I have also created error handling [unit testers](https://github.com/Jarnomer/Hive42) for `pipex`, `so_long` and `cub3d`.
 
 ### Cheers and good luck! 🥳
