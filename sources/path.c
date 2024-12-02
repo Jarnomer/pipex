@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_bonus.c                                       :+:      :+:    :+:   */
+/*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 22:09:53 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/10 22:41:24 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:40:25 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include <pipex.h>
 
 static char	*find_executable(t_pipex *ppx)
 {
@@ -29,7 +29,7 @@ static char	*find_executable(t_pipex *ppx)
 	return (NULL);
 }
 
-static char	**path_envp_found(t_pipex *ppx)
+static char	**split_path_envp(t_pipex *ppx)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ static char	**path_envp_found(t_pipex *ppx)
 		i++;
 	if (ppx->envp[i] != NULL)
 		return (ft_split(ppx->envp[i] + 5, ':'));
-	ppx->error[4] = 1;
+	ppx->error[NOPATH] = true;
 	return (NULL);
 }
 
@@ -49,7 +49,7 @@ char	*executable_path(t_pipex *ppx)
 		return (NULL);
 	else if (ft_strchr(*ppx->cmd, '/'))
 		return (ft_strdup(*ppx->cmd));
-	ppx->paths = path_envp_found(ppx);
+	ppx->paths = split_path_envp(ppx);
 	if (!ppx->paths)
 		return (NULL);
 	ppx->temp = ft_strjoin("/", *ppx->cmd);

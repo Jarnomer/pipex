@@ -1,55 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_bonus.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:58:43 by jmertane          #+#    #+#             */
-/*   Updated: 2024/02/14 15:56:23 by jmertane         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:55:06 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-
-static void	free_parser(t_parse **lst)
-{
-	t_parse	*tmp;
-
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		free(*lst);
-		*lst = tmp;
-	}
-	free(*lst);
-	*lst = NULL;
-}
-
-static void	free_single(char **str)
-{
-	if (!str || !*str)
-		return ;
-	free(*str);
-	*str = NULL;
-}
-
-static void	free_douple(char ***arr)
-{
-	int	i;
-
-	if (!arr || !*arr)
-		return ;
-	i = 0;
-	while ((*arr)[i])
-	{
-		free((*arr)[i]);
-		(*arr)[i] = NULL;
-		i++;
-	}
-	free(*arr);
-	*arr = NULL;
-}
+#include <pipex.h>
 
 void	close_all_fds(t_pipex *ppx)
 {
@@ -59,8 +20,8 @@ void	close_all_fds(t_pipex *ppx)
 		close(ppx->pipe[WR_END]);
 	if (ppx->pipe[RD_END] != -1)
 		close(ppx->pipe[RD_END]);
-	if (ppx->pipeout != -1)
-		close(ppx->pipeout);
+	if (ppx->inpipe != -1)
+		close(ppx->inpipe);
 	if (ppx->infile != -1)
 		close(ppx->infile);
 	if (ppx->outfile != -1)
@@ -72,20 +33,13 @@ void	self_destruct(t_pipex *ppx)
 	if (!ppx)
 		return ;
 	if (ppx->cmd != NULL)
-		free_douple(&ppx->cmd);
+		ft_free_double((void ***)&ppx->cmd);
 	if (ppx->paths != NULL)
-		free_douple(&ppx->paths);
-	if (ppx->args != NULL)
-		free_parser(&ppx->args);
+		ft_free_double((void ***)&ppx->paths);
 	if (ppx->exec != NULL)
-		free_single(&ppx->exec);
-	if (ppx->lmtr != NULL)
-		free_single(&ppx->lmtr);
+		ft_free_single((void **)&ppx->exec);
 	if (ppx->temp != NULL)
-		free_single(&ppx->temp);
+		ft_free_single((void **)&ppx->temp);
 	if (ppx->pids != NULL)
-	{
-		free(ppx->pids);
-		ppx->pids = NULL;
-	}
+		ft_free_single((void **)&ppx->pids);
 }

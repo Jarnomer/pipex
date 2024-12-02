@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include <pipex.h>
 
 static void	log_command_error(t_pipex *ppx)
 {
-	if (ppx->error[0])
-		error_logger(ppx->argv[ppx->stt + ppx->idx], ": ", MSG_CMD);
-	else if (ppx->error[1])
+	if (ppx->error[NOCMD])
+		error_logger(ppx->argv[ppx->start_pos + ppx->index], ": ", MSG_CMD);
+	else if (ppx->error[ISDIR])
 		error_logger(ppx->exec, ": ", MSG_FLDR);
-	else if (ppx->error[2])
+	else if (ppx->error[NOPERM])
 		error_logger(ppx->exec, ": ", MSG_PERM);
-	else if (ppx->error[3] || ppx->error[4])
+	else if (ppx->error[NOFILE] || ppx->error[NOPATH])
 		error_logger(*ppx->cmd, ": ", MSG_FILE);
 	else
 		error_logger(*ppx->cmd, ": ", MSG_CMD);
@@ -32,21 +32,21 @@ static int	command_error(t_pipex *ppx)
 
 	fd = -1;
 	if (!ppx->cmd || !*ppx->cmd)
-		ppx->error[0] = 1;
+		ppx->error[NOCMD] = true;
 	if (ppx->exec != NULL)
 		fd = open(ppx->exec, O_DIRECTORY);
 	if (fd != -1)
-		ppx->error[1] = 1;
+		ppx->error[ISDIR] = true;
 	if (ppx->exec != NULL
 		&& access(ppx->exec, F_OK) == 0
 		&& access(ppx->exec, X_OK) == -1)
-		ppx->error[2] = 1;
+		ppx->error[NOPERM] = true;
 	if (ft_strchr(ppx->exec, '/'))
-		ppx->error[3] = 1;
+		ppx->error[NOFILE] = true;
 	log_command_error(ppx);
 	if (fd != -1)
 		close(fd);
-	if (ppx->error[1] || ppx->error[2])
+	if (ppx->error[ISDIR] || ppx->error[NOPERM])
 		return (ERR_PERM);
 	return (ERR_CMD);
 }
@@ -68,7 +68,10 @@ void	error_occured(int errcode, char *errmsg, t_pipex *ppx)
 	if (errmsg != NULL)
 	{
 		if (errcode == ERR_ARGC)
+		{
 			error_logger("Bad arguments", ": ", MSG_ARGC);
+			error_logger("with here_doc", ": ", MSG_HDOC);
+		}
 		else if (errcode == ERR_CMD)
 			errcode = command_error(ppx);
 		else

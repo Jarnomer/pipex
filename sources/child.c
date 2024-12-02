@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include <pipex.h>
 
 static void	execute_cmd(t_pipex *ppx)
 {
-	parse_argument(ppx->argv[ppx->stt + ppx->idx], ppx);
+	ppx->cmd = ft_split(ppx->argv[ppx->start_pos + ppx->index], ' ');
 	ppx->exec = executable_path(ppx);
 	if (!ppx->cmd || !*ppx->cmd || !ppx->exec
 		|| execve(ppx->exec, ppx->cmd, ppx->envp) == -1)
@@ -30,34 +30,34 @@ static void	replace_io(int input, int output, t_pipex *ppx)
 
 static void	redirect_fds(t_pipex *ppx)
 {
-	if (!ppx->idx)
+	if (!ppx->index)
 		replace_io(ppx->infile, ppx->pipe[WR_END], ppx);
-	else if (ppx->idx != ppx->cmds)
-		replace_io(ppx->pipeout, ppx->pipe[WR_END], ppx);
-	else if (ppx->idx == ppx->cmds)
-		replace_io(ppx->pipeout, ppx->outfile, ppx);
+	else if (ppx->index != ppx->cmd_count)
+		replace_io(ppx->inpipe, ppx->pipe[WR_END], ppx);
+	else if (ppx->index == ppx->cmd_count)
+		replace_io(ppx->inpipe, ppx->outfile, ppx);
 }
 
 static void	prep_next_pipe(t_pipex *ppx)
 {
 	close(ppx->pipe[WR_END]);
-	if (ppx->pipeout != -1)
-		close(ppx->pipeout);
-	ppx->pipeout = dup(ppx->pipe[RD_END]);
+	if (ppx->inpipe != -1)
+		close(ppx->inpipe);
+	ppx->inpipe = dup(ppx->pipe[RD_END]);
 	close(ppx->pipe[RD_END]);
 }
 
 void	child_process(t_pipex *ppx)
 {
-	if (ppx->idx != ppx->cmds
+	if (ppx->index != ppx->cmd_count
 		&& pipe(ppx->pipe) == -1)
 		error_occured(ERR_PIPE, MSG_PIPE, ppx);
-	ppx->pids[ppx->idx] = fork();
-	if (ppx->pids[ppx->idx] == -1)
+	ppx->pids[ppx->index] = fork();
+	if (ppx->pids[ppx->index] == -1)
 		error_occured(ERR_FORK, MSG_FORK, ppx);
-	else if (ppx->pids[ppx->idx] != 0)
+	else if (ppx->pids[ppx->index] != 0)
 		prep_next_pipe(ppx);
-	else if (ppx->pids[ppx->idx] == 0)
+	else if (ppx->pids[ppx->index] == 0)
 	{
 		redirect_fds(ppx);
 		close_all_fds(ppx);

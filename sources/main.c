@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmertane <jmertane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:27:15 by jmertane          #+#    #+#             */
-/*   Updated: 2023/11/26 10:48:37 by jmertane         ###   ########.fr       */
+/*   Created: 2024/02/08 20:55:54 by jmertane          #+#    #+#             */
+/*   Updated: 2024/02/11 16:34:50 by jmertane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <pipex.h>
 
-int	ft_isdigit(int c)
+int	main(int argc, char **argv, char **envp)
 {
-	return ('0' <= c && c <= '9');
+	t_pipex	ppx;
+
+	if (argc < 5)
+		error_occured(ERR_ARGC, MSG_ARGC, NULL);
+	init_pipex(argc, argv, envp, &ppx);
+	while (++ppx.index <= ppx.cmd_count)
+		child_process(&ppx);
+	close_all_fds(&ppx);
+	wait_children(NOERROR, &ppx);
+	self_destruct(&ppx);
+	return (ppx.exitcode);
 }
