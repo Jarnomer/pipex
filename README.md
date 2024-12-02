@@ -70,7 +70,7 @@ Will be the same as bash syntax:
 
 [franzinette](https://github.com/xicodomingues/francinette) amazing unit test framework for pipex and other 42 projects.
 
-[pipex-tester](https://github.com/vfurmane/pipex-tester) effective base tester that is inline with the subject.
+[pipex-tester](https://github.com/vfurmane/pipex-tester) effective basic tester that is inline with the subject.
 
 [pipex_tester](https://github.com/bastienkody/pipex_tester) more complex and extensive tests like commands with quotes.
 
