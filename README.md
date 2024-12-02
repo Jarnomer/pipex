@@ -72,7 +72,7 @@ Will be the same as bash syntax:
 
 [pipex-tester](https://github.com/vfurmane/pipex-tester) effective base tester that is inline with the subject.
 
-[pipex_tester](https://github.com/bastienkody/pipex_tester) more complex and extensive tests like quotes.
+[pipex_tester](https://github.com/bastienkody/pipex_tester) more complex and extensive tests like commands with quotes.
 
 [pipex-error-tester](https://github.com/Jarnomer/pipex-error-tester) my personal tester focusing on error handling.
 
