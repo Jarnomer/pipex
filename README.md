@@ -10,13 +10,24 @@
   <img src="https://img.shields.io/badge/Score-125%2F100-lightgreen?style=for-the-badge" alt="score">
   <img src="https://img.shields.io/github/languages/top/Jarnomer/pipex?style=for-the-badge&logo=c&label=%20&labelColor=gray&color=lightblue" alt="GitHub top language">
 	<img src="https://img.shields.io/github/languages/code-size/Jarnomer/pipex?style=for-the-badge&color=lightyellow" alt="GitHub code size in bytes">
-  <img src="https://img.shields.io/github/directory-file-count/Jarnomer/pipex/sources?style=for-the-badge&color=pink" alt="GitHub repo file or directory count (in path)">
+  <img src="https://img.shields.io/github/directory-file-count/Jarnomer/pipex/sources?style=for-the-badge&label=sources&color=pink" alt="GitHub repo file or directory count (in path)">
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Type-Solo-violet?style=for-the-badge" alt="type">
   <img src="https://img.shields.io/github/last-commit/Jarnomer/pipex/main?style=for-the-badge&color=red" alt="GitHub last commit (branch)">
 </p>
+
+<div align="center">
+
+## Table of Contents
+[📝 General](#-general)
+[🛠️ Build](#️-build)
+[⚡ Usage](#-usage)
+[🚀 Details](#-details)
+[♻️ Resources](#️-resources)
+
+</div>
 
 ## 📝 General
 
@@ -36,6 +47,10 @@ GNU `make` and `gcc` are required to build and compile the project.
 
 ```bash
 git clone --recurse-submodules https://github.com/Jarnomer/pipex.git pipex
+```
+
+```bash
+cd pipex && make all
 ```
 
 ## ⚡ Usage
@@ -65,6 +80,10 @@ Will be the same as bash syntax:
 ```bash
 << EOF cat | cat | wc -l >> outfile
 ```
+
+## 🚀 Details
+
+[RESERVED]
 
 ## ♻️ Resources
 
