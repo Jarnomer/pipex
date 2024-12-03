@@ -185,8 +185,8 @@ $(foreach build, $(BUILDDIR), $(eval $(call build_cmd, $(build))))
 #    PHONY
 # **************************************************************************** #
 
-.PHONY: all re
-.PHONY: debug libft
+.PHONY: all libft re
+.PHONY: debug leaks run nm
 .PHONY: clean fclean
 
 .SILENT:
