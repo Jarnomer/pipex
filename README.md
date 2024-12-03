@@ -37,9 +37,7 @@ It also features `redirections` to file descriptors using `dup` and `dup2`.
 
 Project `passes` many of the 42 `testers`, including [franzinette](https://github.com/xicodomingues/francinette) `strict` excluding quotes and backslashes.
 
-## ⚠️ Notice
-
-For studies perspective I `highly` recommend that you finish the `bonus` part of this project.
+⚠️ For studies perspective I `highly` recommend that you finish the `bonus` part of this project. ⚠️
 
 ## 🛠️ Build
 
