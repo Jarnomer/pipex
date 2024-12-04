@@ -24,7 +24,8 @@ BUILDLOG  := build.log
 LIBFTDIR  := ./libft
 LIBFTBIN  := libft.a
 
-TESTCASE  := ./$(NAME) "Makefile" ls ls 'wc -l' outf && cat outf && rm -rf outf
+OUTFILE   := outf
+TESTCASE  := ./$(NAME) "Makefile" cat cat 'wc -l' $(OUTFILE)
 
 # **************************************************************************** #
 #    COMMANDS
@@ -100,6 +101,7 @@ $(LIBFTDIR)/$(LIBFTBIN):
 run: all
 	$(SCREENCLEAR)
 	$(TESTCASE)
+	cat $(OUTFILE) && $(RM) $(OUTFILE)
 
 re: fclean
 	make all
@@ -119,6 +121,7 @@ ifneq ($(shell command -v valgrind >/dev/null 2>&1 && echo 1 || echo 0), 1)
 	@printf "$(R)$(B)Error: valgrind: $(Y)command not found$(T)\n"; exit 1
 endif
 	valgrind $(VLGFLAGS) $(TESTCASE)
+	$(RM) -rf $(OUTFILE)
 	$(call report_cmd, $(LEAKSLOG))
 
 define report_cmd
