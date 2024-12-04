@@ -110,18 +110,12 @@ debug: CFLAGS += $(DEBUGFLAGS)
 debug: re
 
 nm:
-ifneq ($(shell command -v norminette >/dev/null 2>&1 && echo 1 || echo 0), 1)
-	@printf "$(R)$(B)Error: norminette: $(Y)command not found$(T)\n"; exit 1
-endif
 	$(foreach h, $(HEADERDIR), norminette -R CheckDefine $(h))
 	$(foreach s, $(SOURCEDIR), norminette -R CheckForbiddenSourceHeader $(s))
 
 leaks: all
-ifneq ($(shell command -v valgrind >/dev/null 2>&1 && echo 1 || echo 0), 1)
-	@printf "$(R)$(B)Error: valgrind: $(Y)command not found$(T)\n"; exit 1
-endif
 	valgrind $(VLGFLAGS) $(TESTCASE)
-	$(RM) -rf $(OUTFILE)
+	@$(RM) -rf $(OUTFILE)
 	$(call report_cmd, $(LEAKSLOG))
 
 define report_cmd
