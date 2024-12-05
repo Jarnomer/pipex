@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>pipex</b>
+  <img src="assets/pipex.png" alt="pipex" width="400">
 </h1>
 
 <p align="center">
