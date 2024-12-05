@@ -12,7 +12,7 @@
 
 #include <pipex.h>
 
-static void	finish_heredoc(t_pipex *ppx, char** eof)
+static void	finish_heredoc(t_pipex *ppx, char **eof)
 {
 	get_next_line(-1);
 	ft_free_single((void **)eof);
@@ -21,7 +21,7 @@ static void	finish_heredoc(t_pipex *ppx, char** eof)
 	close(ppx->pipe[RD_END]);
 }
 
-static void	prepare_heredoc(t_pipex *ppx, char** eof)
+static void	prepare_heredoc(t_pipex *ppx, char **eof)
 {
 	if (pipe(ppx->pipe) == -1)
 		error_occured(ERR_PIPE, MSG_PIPE, ppx);

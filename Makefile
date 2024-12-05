@@ -110,8 +110,10 @@ debug: CFLAGS += $(DEBUGFLAGS)
 debug: re
 
 nm:
-	$(foreach h, $(HEADERDIR), norminette -R CheckDefine $(h))
-	$(foreach s, $(SOURCEDIR), norminette -R CheckForbiddenSourceHeader $(s))
+	$(foreach d, $(HEADERDIR), $(foreach h, $(wildcard $(d)/*), \
+		norminette -R CheckDefine $(h);))
+	$(foreach d, $(SOURCEDIR), $(foreach s, $(wildcard $(d)/*), \
+		norminette -R CheckForbiddenSourceHeader $(s);))
 
 leaks: all
 	valgrind $(VLGFLAGS) $(TESTCASE)
