@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <b><i>Bash file redirections and chained unix commands.</i></b><br>
+  <b><i>Pipe unix commands 🐧 with redirect operators.</i></b><br>
 </p>
 
 <p align="center">
@@ -44,7 +44,7 @@ Project `passes` many of the 42 `testers`, including [franzinette](https://githu
 GNU `make` and `gcc` are required to build and compile the project.
 
 ```bash
-git clone --recurse-submodules https://github.com/Jarnomer/pipex.git pipex
+git clone --recurse-submodules https://github.com/Jarnomer/pipex.git
 ```
 
 ```bash
