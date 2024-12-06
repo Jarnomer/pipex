@@ -85,7 +85,7 @@ Will be the same as bash syntax:
 
 ## ♻️ Resources
 
-[franzinette](https://github.com/xicodomingues/francinette) amazing unit test framework for pipex and other 42 projects.
+[franzinette](https://github.com/xicodomingues/francinette) amazing unit test framework for `pipex` and other 42 projects.
 
 [pipex-tester](https://github.com/vfurmane/pipex-tester) effective basic tester that is inline with the subject.
 
@@ -95,8 +95,8 @@ Will be the same as bash syntax:
 
 ## 4️⃣2️⃣ Footer
 
-For my other 42 project and general information, please refer the [landing page](https://github.com/Jarnomer/Hive42).
+For my other 42 projects and general information, please refer the [Hive42](https://github.com/Jarnomer/Hive42) page.
 
-I have also created error handling [unit testers](https://github.com/Jarnomer/Hive42) for `pipex`, `so_long` and `cub3d`.
+I have also created error handling [unit testers](https://github.com/Jarnomer/42Testers) for `pipex`, `so_long` and `cub3D`.
 
 ### Cheers and good luck! 🥳
