@@ -26,26 +26,30 @@ static void	log_command_error(t_pipex *ppx)
 		error_logger(*ppx->cmd, ": ", MSG_CMD);
 }
 
-static int	command_error(t_pipex *ppx)
+static void	check_executable(t_pipex *ppx)
 {
 	int	fd;
 
 	fd = -1;
-	if (!ppx->cmd || !*ppx->cmd)
-		ppx->error[NOCMD] = true;
-	if (ppx->exec != NULL)
-		fd = open(ppx->exec, O_DIRECTORY);
+	fd = open(ppx->exec, O_DIRECTORY);
 	if (fd != -1)
 		ppx->error[ISDIR] = true;
-	if (ppx->exec != NULL
-		&& access(ppx->exec, F_OK) == 0
+	else if (access(ppx->exec, F_OK) == 0
 		&& access(ppx->exec, X_OK) == -1)
 		ppx->error[NOPERM] = true;
-	if (ft_strchr(ppx->exec, '/'))
+	else if (ft_strchr(ppx->exec, '/'))
 		ppx->error[NOFILE] = true;
-	log_command_error(ppx);
 	if (fd != -1)
 		close(fd);
+}
+
+static int	command_error(t_pipex *ppx)
+{
+	if (!ppx->cmd || !*ppx->cmd)
+		ppx->error[NOCMD] = true;
+	else if (ppx->exec)
+		check_executable(ppx);
+	log_command_error(ppx);
 	if (ppx->error[ISDIR] || ppx->error[NOPERM])
 		return (ERR_PERM);
 	return (ERR_CMD);
