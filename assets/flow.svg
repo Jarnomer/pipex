@@ -1,172 +1,185 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 480">
   <!-- Background -->
-  <rect width="900" height="480" fill="#131620" rx="10" ry="10" />
+  <rect width="770" height="480" fill="#131620" rx="10" ry="10" />
   
   <!-- Title -->
-  <text x="450" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#E9BD65">Pipeline Execution Flow</text>
+  <text x="415" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#E9BD65">Pipeline Flow</text>
   
   <!-- Timeline Sections -->
-  <line x1="30" y1="100" x2="870" y2="100" stroke="#555" stroke-width="2" />
-  <line x1="30" y1="240" x2="870" y2="240" stroke="#555" stroke-width="2" />
-  <line x1="30" y1="380" x2="870" y2="380" stroke="#555" stroke-width="2" />
+  <line x1="55" y1="100" x2="700" y2="100" stroke="#555" stroke-width="2" />
+  <line x1="55" y1="240" x2="700" y2="240" stroke="#555" stroke-width="2" />
+  <line x1="55" y1="380" x2="700" y2="380" stroke="#555" stroke-width="2" />
   
   <!-- Row Labels -->
-  <text x="20" y="100" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Main</text>
-  <text x="20" y="240" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Pipes</text>
-  <text x="20" y="380" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Children</text>
+  <text x="50" y="100" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Main</text>
+  <text x="50" y="240" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Pipes</text>
+  <text x="50" y="380" font-family="Arial" font-size="16" text-anchor="end" dominant-baseline="middle" fill="#E9BD65">Child</text>
   
+
+
+  <!-- **************************************************** -->
   <!-- Main Process: Command 1 -->
+  <!-- **************************************************** -->
+  <!-- <rect x="64" y="60" width="197" height="360" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" /> -->
   <rect x="70" y="70" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#A4E57E" stroke-width="2" />
-  <text x="160" y="100" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="#E9BD65">Main (index = 0)</text>
-  <text x="160" y="120" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">pipe() → fork()</text>
+  <text x="160" y="95" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold" fill="#E9BD65">Main (index = 0)</text>
+  <text x="160" y="110" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">pipe() → fork()</text>
   
   <!-- Command 1 Pipe Group -->
-  <rect x="70" y="210" width="180" height="60" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
+  <rect x="70" y="213" width="185" height="55" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
   
-  <!-- infile -->
-  <rect x="75" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#A5D4E5" stroke-width="2" />
-  <text x="95" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">infile</text>
-  
+  <!-- inpipe (swapped with infile) -->
+  <rect x="75" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" />
+  <text x="95" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
+  <text x="95" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(none)</text>
+   
   <!-- Pipes for Command 1 -->
-  <rect x="115" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
-  <text x="135" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[0]</text>
-  <text x="135" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(read)</text>
+  <rect x="120" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
+  <text x="140" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[0]</text>
+  <text x="140" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(read)</text>
   
-  <rect x="155" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
-  <text x="175" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[1]</text>
-  <text x="175" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#E57E60">(write)</text>
+  <rect x="165" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
+  <text x="185" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[1]</text>
+  <text x="185" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#E57E60">(write)</text>
   
-  <rect x="195" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" />
-  <text x="215" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
-  <text x="215" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(none)</text>
+  <rect x="210" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#A5D4E5" stroke-width="2" />
+  <text x="230" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">infile</text>
+  <text x="230" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(read)</text>
   
   <!-- Child Process 1 -->
   <rect x="70" y="350" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#F5B5B5" stroke-width="2" />
   <text x="160" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#E9BD65">Child PID[0] (cmd1)</text>
-  <text x="160" y="390" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(infile, STDIN)</text>
-  <text x="160" y="405" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
+  <text x="160" y="385" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(infile, STDIN)</text>
+  <text x="160" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
   
+  <!-- Arrows for Process Flow: Command 1 -->
+  <!-- Main to inpipe - straight line with reversed arrow -->
+  <path d="M95 220 L95 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="90,140 95,130 100,140" fill="#E57ED1" />
+  
+  <!-- infile to Child 1 STDIN (right side) -->
+  <path d="M230 260 L230 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
+  <polygon points="225,340 230,350 235,340" fill="#A5D4E5" />
+
+  <!-- Child 1 STDOUT to pipe[1] (right side) -->
+  <path d="M185 350 L185 260" fill="none" stroke="#E57E60" stroke-width="2" />
+  <polygon points="180,270 185,260 190,270" fill="#E57E60" />
+
+  <!-- **************************************************** -->
   <!-- Main Process: Command 2 -->
+  <!-- **************************************************** -->
   <rect x="320" y="70" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#A4E57E" stroke-width="2" />
-  <text x="410" y="100" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="#E9BD65">Main (index = 1)</text>
-  <text x="410" y="120" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">pipe() → fork()</text>
+  <text x="410" y="95" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold" fill="#E9BD65">Main (index = 1)</text>
+  <text x="410" y="110" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">pipe() → fork()</text>
   
   <!-- Command 2 Pipe Group -->
-  <rect x="320" y="210" width="180" height="60" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
+  <rect x="320" y="213" width="185" height="55" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
   
   <!-- infile (now inpipe from cmd1) -->
   <rect x="325" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" />
-  <text x="345" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
-  <text x="345" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(pipe[0])</text>
+  <text x="345" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
+  <text x="345" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">pipe[0]</text>
   
   <!-- Pipes for Command 2 -->
-  <rect x="365" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
-  <text x="385" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[0]</text>
-  <text x="385" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(read)</text>
+  <rect x="370" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
+  <text x="390" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[0]</text>
+  <text x="390" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(read)</text>
   
-  <rect x="405" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
-  <text x="425" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[1]</text>
-  <text x="425" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#E57E60">(write)</text>
+  <rect x="415" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#F0E4BC" stroke-width="2" />
+  <text x="435" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">pipe[1]</text>
+  <text x="435" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#E57E60">(write)</text>
   
   <rect x="445" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" opacity="0" />
   
   <!-- Child Process 2 -->
   <rect x="320" y="350" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#F5B5B5" stroke-width="2" />
   <text x="410" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#E9BD65">Child PID[1] (cmd2)</text>
-  <text x="410" y="390" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(inpipe, STDIN)</text>
-  <text x="410" y="405" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
-  
-  <!-- Main Process: Command 3 -->
-  <rect x="570" y="70" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#A4E57E" stroke-width="2" />
-  <text x="660" y="100" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="#E9BD65">Main (index = 2)</text>
-  <text x="660" y="120" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">last command</text>
-  
-  <!-- Command 3 Pipe Group -->
-  <rect x="570" y="210" width="180" height="60" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
-  
-  <!-- inpipe from cmd2 -->
-  <rect x="575" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" />
-  <text x="595" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
-  <text x="595" y="258" font-family="Arial" font-size="9" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">(pipe[0])</text>
-  
-  <!-- outfile instead of pipe for last command -->
-  <rect x="655" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#A5D4E5" stroke-width="2" />
-  <text x="675" y="243" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">outfile</text>
-  
-  <!-- Child Process 3 -->
-  <rect x="570" y="350" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#F5B5B5" stroke-width="2" />
-  <text x="660" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#E9BD65">Child PID[2] (cmd3)</text>
-  <text x="660" y="390" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(inpipe, STDIN)</text>
-  <text x="660" y="405" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(outfile, STDOUT)</text>
-
-  <!-- Arrows for Process Flow: Command 1 -->
-  <!-- Main to pipe[0] - straight line with reversed arrow -->
-  <path d="M135 220 L135 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="130,135 135,130 140,135" fill="#E57ED1" />
+  <text x="410" y="385" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(inpipe, STDIN)</text>
+  <text x="410" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
   
   <!-- Main to inpipe for next command - with two sharp turns -->
   <path d="M175 130 L175 170 L345 170 L345 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="340,215 345,220 350,215" fill="#E57ED1" />
-  
+  <polygon points="340,210 345,220 350,210" fill="#E57ED1" />
+
   <!-- Arrows for Process Flow: Command 2 -->
   <!-- Main to pipe[0] - straight line with reversed arrow -->
   <path d="M385 220 L385 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="380,135 385,130 390,135" fill="#E57ED1" />
-  
-  <!-- Main to inpipe for next command - with two sharp turns -->
-  <path d="M425 130 L425 170 L595 170 L595 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="590,215 595,220 600,215" fill="#E57ED1" />
-  
-  <!-- STDIN Connections (Blue) - Made Straight -->
-  <!-- infile to Child 1 STDIN (left side) -->
-  <path d="M95 260 L95 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
-  <polygon points="90,345 95,350 100,345" fill="#A5D4E5" />
-  
+  <polygon points="380,140 385,130 390,140" fill="#E57ED1" />
+
   <!-- inpipe to Child 2 STDIN (left side) -->
   <path d="M345 260 L345 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
-  <polygon points="340,345 345,350 350,345" fill="#A5D4E5" />
+  <polygon points="340,340 345,350 350,340" fill="#A5D4E5" />
+
+  <!-- Child 2 STDOUT to pipe[1] (right side) -->
+  <path d="M435 350 L435 260" fill="none" stroke="#E57E60" stroke-width="2" />
+  <polygon points="430,270 435,260 440,270" fill="#E57E60" />
+
+  <!-- **************************************************** -->
+  <!-- Main Process: Command 3 -->
+  <!-- **************************************************** -->
+  <rect x="570" y="70" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#A4E57E" stroke-width="2" />
+  <text x="660" y="95" font-family="Arial" font-size="14" text-anchor="middle" dominant-baseline="middle" font-weight="bold" fill="#E9BD65">Main (index = 2)</text>
+  <text x="660" y="110" font-family="Arial" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="white">fork()</text>
+  
+  <!-- Command 3 Pipe Group -->
+  <rect x="570" y="213" width="180" height="55" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" stroke-dasharray="3,3" />
+  
+  <!-- inpipe from cmd2 -->
+  <rect x="575" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#E57ED1" stroke-width="2" />
+  <text x="595" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">inpipe</text>
+  <text x="595" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#A5D4E5">pipe[0]</text>
+  
+  <!-- outfile instead of pipe for last command -->
+  <rect x="705" y="220" width="40" height="40" rx="5" ry="5" fill="#404040" stroke="#A5D4E5" stroke-width="2" />
+  <text x="725" y="236" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="white">outfile</text>
+  <text x="725" y="248" font-family="Arial" font-size="11" text-anchor="middle" dominant-baseline="middle" fill="#E57E60">(write)</text>
+    
+  <!-- Child Process 3 -->
+  <rect x="570" y="350" width="180" height="60" rx="5" ry="5" fill="#404040" stroke="#F5B5B5" stroke-width="2" />
+  <text x="660" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold" fill="#E9BD65">Child PID[2] (cmd3)</text>
+  <text x="660" y="385" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(inpipe, STDIN)</text>
+  <text x="660" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(outfile, STDOUT)</text>
+
+  <!-- Arrows for Process Flow: Command 3 -->
+  <!-- Main to inpipe for next command - with two sharp turns -->
+  <path d="M425 130 L425 170 L595 170 L595 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="590,210 595,220 600,210" fill="#E57ED1" />
   
   <!-- inpipe to Child 3 STDIN (left side) -->
   <path d="M595 260 L595 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
-  <polygon points="590,345 595,350 600,345" fill="#A5D4E5" />
-  
-  <!-- STDOUT Connections (Green) - Made Straight -->
-  <!-- Child 1 STDOUT to pipe[1] (right side) -->
-  <path d="M175 350 L175 260" fill="none" stroke="#E57E60" stroke-width="2" />
-  <polygon points="170,265 175,260 180,265" fill="#E57E60" />
-  
-  <!-- Child 2 STDOUT to pipe[1] (right side) -->
-  <path d="M425 350 L425 260" fill="none" stroke="#E57E60" stroke-width="2" />
-  <polygon points="420,265 425,260 430,265" fill="#E57E60" />
-  
+  <polygon points="590,340 595,350 600,340" fill="#A5D4E5" />
+
   <!-- Child 3 STDOUT to outfile (right side) -->
-  <path d="M675 350 L675 260" fill="none" stroke="#E57E60" stroke-width="2" />
-  <polygon points="670,265 675,260 680,265" fill="#E57E60" />
-  
+  <path d="M725 350 L725 260" fill="none" stroke="#E57E60" stroke-width="2" />
+  <polygon points="720,270 725,260 730,270" fill="#E57E60" />
+
+
+
   <!-- Main flow between processes -->
   <path d="M250 100 L320 100" fill="none" stroke="#E9BD65" stroke-width="2" />
-  <polygon points="315,95 320,100 315,105" fill="#E9BD65" />
+  <polygon points="310,95 320,100 310,105" fill="#E9BD65" />
   
   <path d="M500 100 L570 100" fill="none" stroke="#E9BD65" stroke-width="2" />
-  <polygon points="565,95 570,100 565,105" fill="#E9BD65" />
+  <polygon points="560,95 570,100 560,105" fill="#E9BD65" />
   
   <!-- Child flow between processes -->
   <path d="M250 380 L320 380" fill="none" stroke="#E9BD65" stroke-width="2" />
-  <polygon points="315,375 320,380 315,385" fill="#E9BD65" />
+  <polygon points="310,375 320,380 310,385" fill="#E9BD65" />
   
   <path d="M500 380 L570 380" fill="none" stroke="#E9BD65" stroke-width="2" />
-  <polygon points="565,375 570,380 565,385" fill="#E9BD65" />
+  <polygon points="560,375 570,380 560,385" fill="#E9BD65" />
   
+
+
   <!-- Legend -->
-  <rect x="700" y="400" width="180" height="70" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" />
-  <text x="790" y="415" font-family="Arial" font-size="12" text-anchor="middle" fill="#E9BD65">Legend</text>
+  <rect x="70" y="430" width="680" height="30" rx="5" ry="5" fill="#303030" stroke="#555" stroke-width="1" />
+
+  <line x1="120" y1="445" x2="160" y2="445" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <text x="170" y="448" font-family="Arial" font-size="10" fill="white">DUP</text>
   
-  <line x1="710" y1="430" x2="730" y2="430" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <text x="790" y="434" font-family="Arial" font-size="10" fill="white">Main pipe operations</text>
+  <line x1="360" y1="445" x2="400" y2="445" stroke="#E57E60" stroke-width="2" />
+  <text x="410" y="448" font-family="Arial" font-size="10" fill="white">STDOUT</text>
   
-  <line x1="710" y1="450" x2="730" y2="450" stroke="#E57E60" stroke-width="2" />
-  <text x="790" y="454" font-family="Arial" font-size="10" fill="white">Child STDOUT (write)</text>
-  
-  <line x1="710" y1="470" x2="730" y2="470" stroke="#A5D4E5" stroke-width="2" />
-  <text x="790" y="474" font-family="Arial" font-size="10" fill="white">Child STDIN (read)</text>
+  <line x1="610" y1="445" x2="650" y2="445" stroke="#A5D4E5" stroke-width="2" />
+  <text x="660" y="448" font-family="Arial" font-size="10" fill="white">STDIN</text>
 </svg>

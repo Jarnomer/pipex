@@ -30,7 +30,7 @@ static void	copy_token(char *dst, char *src, t_parse *parser)
 
 	i = 0;
 	j = 0;
-	advance_parser(NULL, 0, 0, parser);
+	ft_bzero(parser, sizeof(t_parse));
 	while (src[i] && !is_delimiter(src[i], parser))
 	{
 		if (src[i] == '\\' && src[i + 1])
@@ -52,7 +52,7 @@ static int	token_length(char *cmd, t_parse *parser)
 	int	i;
 
 	i = 0;
-	advance_parser(NULL, 0, 0, parser);
+	ft_bzero(parser, sizeof(t_parse));
 	while (cmd[i] && !is_delimiter(cmd[i], parser))
 	{
 		if (cmd[i] == '\\' && cmd[i + 1])
