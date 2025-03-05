@@ -16,31 +16,31 @@ int	advance_parser(char *str, int i, int amount, t_parse *parser)
 {
 	if (str == NULL)
 	{
-		parser->in_quotes = 0;
+		parser->quoted = false;
 		parser->meta = 0;
 	}
 	else
 	{
-		parser->in_quotes = 1;
+		parser->quoted = true;
 		parser->meta = str[i];
 	}
 	return (amount);
 }
 
-int	handle_special(char *str, t_parse *parser)
+int	handle_meta(char *str, t_parse *parser)
 {
 	if (str[0] == '\\' && str[1])
 		return (2);
-	if ((str[0] == '\'' || str[0] == '\"') && !parser->in_quotes)
+	if ((str[0] == '\'' || str[0] == '\"') && !parser->quoted)
 		return (advance_parser(str, 0, 1, parser));
-	if (parser->in_quotes && str[0] == parser->meta)
+	if (parser->quoted && str[0] == parser->meta)
 		return (advance_parser(NULL, 0, 1, parser));
 	return (1);
 }
 
 int	is_delimiter(char c, t_parse *parser)
 {
-	if (parser->in_quotes)
+	if (parser->quoted)
 		return (0);
 	return (c == ' ' || c == '\t');
 }
@@ -59,7 +59,7 @@ static int	count_tokens(char *cmd, t_parse *parser)
 		if (cmd[i])
 			count++;
 		while (cmd[i] && !is_delimiter(cmd[i], parser))
-			i += handle_special(&cmd[i], parser);
+			i += handle_meta(&cmd[i], parser);
 	}
 	return (count);
 }

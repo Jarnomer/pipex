@@ -69,7 +69,7 @@ enum e_pipe
 typedef struct s_parse
 {
 	int		len;
-	int		in_quotes;
+	bool	quoted;
 	char	meta;
 }	t_parse;
 
@@ -106,7 +106,7 @@ void	error_logger(char *msg1, char *msg2, char *msg3);
 void	error_occured(int errcode, char *errmsg, t_pipex *ppx);
 void	parse_command(char *cmd, t_pipex *ppx);
 char	*extract_token(char **cmd_ptr, t_parse *parser);
-int		handle_special(char *str, t_parse *parser);
+int		handle_meta(char *str, t_parse *parser);
 int		is_delimiter(char c, t_parse *parser);
 int		advance_parser(char *str, int i, int amount, t_parse *parser);
 

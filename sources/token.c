@@ -19,7 +19,7 @@ static int	advance_token(char *str, t_parse *parser)
 	i = 0;
 	ft_bzero(parser, sizeof(t_parse));
 	while (str[i] && !is_delimiter(str[i], parser))
-		i += handle_special(&str[i], parser);
+		i += handle_meta(&str[i], parser);
 	return (i);
 }
 
@@ -38,16 +38,16 @@ static void	copy_token(char *dst, char *src, t_parse *parser)
 			dst[j++] = src[i + 1];
 			i += 2;
 		}
-		else if ((src[i] == '\'' || src[i] == '\"') && !parser->in_quotes)
+		else if ((src[i] == '\'' || src[i] == '\"') && !parser->quoted)
 			i += advance_parser(src, i, 1, parser);
-		else if (parser->in_quotes && src[i] == parser->meta)
+		else if (parser->quoted && src[i] == parser->meta)
 			i += advance_parser(NULL, 0, 1, parser);
 		else
 			dst[j++] = src[i++];
 	}
 }
 
-static int	length(char *str, t_parse *parser)
+static int	token_length(char *str, t_parse *parser)
 {
 	int	i;
 
@@ -60,9 +60,9 @@ static int	length(char *str, t_parse *parser)
 			parser->len++;
 			i += 2;
 		}
-		else if ((str[i] == '\'' || str[i] == '\"') && !parser->in_quotes)
+		else if ((str[i] == '\'' || str[i] == '\"') && !parser->quoted)
 			i += advance_parser(str, i, 1, parser);
-		else if (parser->in_quotes && str[i] == parser->meta)
+		else if (parser->quoted && str[i] == parser->meta)
 			i += advance_parser(NULL, 0, 1, parser);
 		else
 			parser->len = ++i;
@@ -79,7 +79,7 @@ char	*extract_token(char **cmd_ptr, t_parse *parser)
 	cmd = *cmd_ptr;
 	while (*cmd && is_delimiter(*cmd, parser))
 		cmd++;
-	len = length(cmd, parser);
+	len = token_length(cmd, parser);
 	token = ft_calloc(len + 1, sizeof(char));
 	if (!token)
 		return (NULL);
