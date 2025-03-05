@@ -49,8 +49,7 @@ static void	prep_next_pipe(t_pipex *ppx)
 
 void	child_process(t_pipex *ppx)
 {
-	if (ppx->index != ppx->cmd_count
-		&& pipe(ppx->pipe) == -1)
+	if (ppx->index != ppx->cmd_count && pipe(ppx->pipe) == -1)
 		error_occured(ERR_PIPE, MSG_PIPE, ppx);
 	ppx->pids[ppx->index] = fork();
 	if (ppx->pids[ppx->index] == -1)
