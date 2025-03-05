@@ -20,7 +20,7 @@ static void	log_command_error(t_pipex *ppx)
 		error_logger(ppx->exec, ": ", MSG_FLDR);
 	else if (ppx->error[NOPERM])
 		error_logger(ppx->exec, ": ", MSG_PERM);
-	else if (ppx->error[NOFILE] || ppx->error[NOPATH])
+	else if (ppx->error[NOFILE])
 		error_logger(*ppx->cmd, ": ", MSG_FILE);
 	else
 		error_logger(*ppx->cmd, ": ", MSG_CMD);

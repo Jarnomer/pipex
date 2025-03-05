@@ -23,7 +23,7 @@
 
 # define MSG_ARGC	"./pipex infile cmd1 cmd2 cmd3 ... cmdn outfile"
 # define MSG_HDOC	"./pipex here_doc LIMITER cmd1 ... cmdn outfile"
-# define MSG_CMD	"Command not found"
+# define MSG_CMD	"command not found"
 # define MSG_PERM	"Permission denied"
 # define MSG_FLDR	"Is a directory"
 # define MSG_FILE	"No such file or directory"
@@ -66,26 +66,33 @@ enum e_pipe
 	WR_END
 };
 
+typedef struct s_parse
+{
+	int		len;
+	int		in_quotes;
+	char	meta;
+}	t_parse;
+
 typedef struct s_pipex
 {
-	int				argc;
-	char			**argv;
-	char			**envp;
-	pid_t			*pids;
-	int				exitcode;
-	bool			error[5];
-	int				pipe[2];
-	int				inpipe;
-	int				infile;
-	int				outfile;
-	int				index;
-	int				start_pos;
-	int				cmd_count;
-	char			**paths;
-	char			*temp;
-	char			*exec;
-	char			**cmd;
-	bool			is_hdoc;
+	int		argc;
+	char	**argv;
+	char	**envp;
+	pid_t	*pids;
+	int		exitcode;
+	bool	error[5];
+	int		pipe[2];
+	int		inpipe;
+	int		infile;
+	int		outfile;
+	int		index;
+	int		start_pos;
+	int		cmd_count;
+	char	**paths;
+	char	*temp;
+	char	*exec;
+	char	**cmd;
+	bool	is_hdoc;
 }	t_pipex;
 
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *ppx);
@@ -97,5 +104,10 @@ void	close_all_fds(t_pipex *ppx);
 void	self_destruct(t_pipex *ppx);
 void	error_logger(char *msg1, char *msg2, char *msg3);
 void	error_occured(int errcode, char *errmsg, t_pipex *ppx);
+void	parse_command(char *cmd, t_pipex *ppx);
+char	*extract_token(char **cmd_ptr, t_parse *parser);
+int		handle_special(char *str, t_parse *parser);
+int		is_delimiter(char c, t_parse *parser);
+int		advance_parser(char *str, int i, int amount, t_parse *parser);
 
 #endif

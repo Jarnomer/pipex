@@ -25,7 +25,7 @@ LIBFTDIR  := ./libft
 LIBFTBIN  := libft.a
 
 OUTFILE   := outf
-TESTCASE  := ./$(NAME) "Makefile" cat cat 'wc -l' $(OUTFILE)
+TESTCASE  := ./$(NAME) "Makefile" cat cat "wc -l" $(OUTFILE)
 
 # **************************************************************************** #
 #    COMMANDS
@@ -66,6 +66,8 @@ SOURCES := main \
            init \
 		   hdoc \
            child \
+		   parse \
+		   token \
            wait \
            path \
            free \
@@ -117,7 +119,7 @@ nm:
 
 leaks: all
 	valgrind $(VLGFLAGS) $(TESTCASE)
-	@$(RM) -rf $(OUTFILE)
+	@$(RM) $(OUTFILE)
 	$(call report_cmd, $(LEAKSLOG))
 
 define report_cmd
@@ -147,7 +149,7 @@ endef
 
 clean:
 	@make -C $(LIBFTDIR) fclean
-	$(call delete_cmd, $(BUILDDIR), $(BUILDLOG), $(LEAKSLOG))
+	$(call delete_cmd, $(BUILDDIR), $(BUILDLOG), $(LEAKSLOG) $(OUTFILE))
 
 fclean: clean
 	$(call delete_cmd, $(NAME))

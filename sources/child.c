@@ -14,7 +14,7 @@
 
 static void	execute_cmd(t_pipex *ppx)
 {
-	ppx->cmd = ft_split(ppx->argv[ppx->start_pos + ppx->index], ' ');
+	parse_command(ppx->argv[ppx->start_pos + ppx->index], ppx);
 	ppx->exec = executable_path(ppx);
 	if (!ppx->cmd || !*ppx->cmd || !ppx->exec
 		|| execve(ppx->exec, ppx->cmd, ppx->envp) == -1)
