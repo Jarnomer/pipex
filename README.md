@@ -104,31 +104,11 @@ void child_process(t_pipex *ppx)
 
 Main process will upkeep the `pipeline` while child will `execute` the command.
 
+Child also overrides the `STDIN` and `STDOUT`, here is the general flow chart.
+
 ![Alt text](assets/flow.svg)
 
-```c
-static void prep_next_pipe(t_pipex *ppx)
-{
-  close(ppx->pipe[WR_END]);
-  if (ppx->inpipe != -1)
-    close(ppx->inpipe);
-  ppx->inpipe = dup(ppx->pipe[RD_END]);
-  close(ppx->pipe[RD_END]);
-}
-```
-
-```c
-static void execute_cmd(t_pipex *ppx)
-{
-  parse_command(ppx->argv[ppx->start_pos + ppx->index], ppx);
-  ppx->exec = executable_path(ppx);
-  if (!ppx->cmd || !*ppx->cmd || !ppx->exec
-    || execve(ppx->exec, ppx->cmd, ppx->envp) == -1)
-    error_occured(ERR_CMD, MSG_CMD, ppx);
-}
-```
-
-The command goes throught custom parser to handle `quotes` and `backslashes`.
+The command goes throught custom `parser` to handle `quotes` and `backslashes`.
 
 ```c
 void parse_command(char *cmd, t_pipex *ppx)
