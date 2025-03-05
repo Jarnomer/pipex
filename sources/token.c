@@ -12,14 +12,14 @@
 
 #include <pipex.h>
 
-static int	advance_token(char *str, t_parse *parser)
+static int	advance_token(char *cmd, t_parse *parser)
 {
 	int	i;
 
 	i = 0;
 	ft_bzero(parser, sizeof(t_parse));
-	while (str[i] && !is_delimiter(str[i], parser))
-		i += handle_meta(&str[i], parser);
+	while (cmd[i] && !is_delimiter(cmd[i], parser))
+		i += handle_meta(&cmd[i], parser);
 	return (i);
 }
 
@@ -47,22 +47,22 @@ static void	copy_token(char *dst, char *src, t_parse *parser)
 	}
 }
 
-static int	token_length(char *str, t_parse *parser)
+static int	token_length(char *cmd, t_parse *parser)
 {
 	int	i;
 
 	i = 0;
 	advance_parser(NULL, 0, 0, parser);
-	while (str[i] && !is_delimiter(str[i], parser))
+	while (cmd[i] && !is_delimiter(cmd[i], parser))
 	{
-		if (str[i] == '\\' && str[i + 1])
+		if (cmd[i] == '\\' && cmd[i + 1])
 		{
 			parser->len++;
 			i += 2;
 		}
-		else if ((str[i] == '\'' || str[i] == '\"') && !parser->quoted)
-			i += advance_parser(str, i, 1, parser);
-		else if (parser->quoted && str[i] == parser->meta)
+		else if ((cmd[i] == '\'' || cmd[i] == '\"') && !parser->quoted)
+			i += advance_parser(cmd, i, 1, parser);
+		else if (parser->quoted && cmd[i] == parser->meta)
 			i += advance_parser(NULL, 0, 1, parser);
 		else
 			parser->len = ++i;
