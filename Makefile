@@ -100,6 +100,8 @@ libft: $(LIBFTDIR)/$(LIBFTBIN)
 $(LIBFTDIR)/$(LIBFTBIN): 
 	@make -C $(LIBFTDIR) all
 
+bonus: all
+
 run: all
 	$(SCREENCLEAR)
 	$(TESTCASE)
