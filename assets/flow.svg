@@ -53,9 +53,9 @@
   <text x="160" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
   
   <!-- Arrows for Process Flow: Command 1 -->
-  <!-- Main to inpipe - straight line with reversed arrow -->
-  <path d="M95 220 L95 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="90,140 95,130 100,140" fill="#E57ED1" />
+  <!-- Main to pipe[0] - changed from inpipe -->
+  <path d="M140 220 L140 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="135,140 140,130 145,140" fill="#E57ED1" />
   
   <!-- infile to Child 1 STDIN (right side) -->
   <path d="M230 260 L230 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
@@ -98,13 +98,13 @@
   <text x="410" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(pipe[1], STDOUT)</text>
   
   <!-- Main to inpipe for next command - with two sharp turns -->
-  <path d="M175 130 L175 170 L345 170 L345 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <path d="M140 130 L140 170 L345 170 L345 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
   <polygon points="340,210 345,220 350,210" fill="#E57ED1" />
 
   <!-- Arrows for Process Flow: Command 2 -->
   <!-- Main to pipe[0] - straight line with reversed arrow -->
-  <path d="M385 220 L385 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
-  <polygon points="380,140 385,130 390,140" fill="#E57ED1" />
+  <path d="M390 220 L390 130" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="385,140 390,130 395,140" fill="#E57ED1" />
 
   <!-- inpipe to Child 2 STDIN (left side) -->
   <path d="M345 260 L345 350" fill="none" stroke="#A5D4E5" stroke-width="2" />
@@ -141,8 +141,8 @@
   <text x="660" y="400" font-family="Arial" font-size="12" text-anchor="middle" fill="white">dup2(outfile, STDOUT)</text>
 
   <!-- Arrows for Process Flow: Command 3 -->
-  <!-- Main to inpipe for next command - with two sharp turns -->
-  <path d="M425 130 L425 170 L595 170 L595 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
+  <!-- Main to inpipe for next command - with two sharp turns - fixed to middle of box -->
+  <path d="M390 130 L390 170 L595 170 L595 220" fill="none" stroke="#E57ED1" stroke-width="2" stroke-dasharray="5,3" />
   <polygon points="590,210 595,220 600,210" fill="#E57ED1" />
   
   <!-- inpipe to Child 3 STDIN (left side) -->

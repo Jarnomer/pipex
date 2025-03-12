@@ -30,11 +30,13 @@ static void	replace_io(int input, int output, t_pipex *ppx)
 
 static void	redirect_fds(t_pipex *ppx)
 {
-	if (!ppx->index)
+	if (!ppx->index && !ppx->cmd_count)
+		replace_io(ppx->infile, ppx->outfile, ppx);
+	else if (!ppx->index)
 		replace_io(ppx->infile, ppx->pipe[WR_END], ppx);
 	else if (ppx->index != ppx->cmd_count)
 		replace_io(ppx->inpipe, ppx->pipe[WR_END], ppx);
-	else if (ppx->index == ppx->cmd_count)
+	else
 		replace_io(ppx->inpipe, ppx->outfile, ppx);
 }
 
@@ -56,7 +58,7 @@ void	child_process(t_pipex *ppx)
 		error_occured(ERR_FORK, MSG_FORK, ppx);
 	else if (ppx->pids[ppx->index] != 0)
 		prep_next_pipe(ppx);
-	else if (ppx->pids[ppx->index] == 0)
+	else
 	{
 		redirect_fds(ppx);
 		close_all_fds(ppx);
