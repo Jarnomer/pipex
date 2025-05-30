@@ -55,8 +55,7 @@ VLGFLAGS := --leak-check=full \
             --track-fds=yes \
             --trace-children=yes \
             --log-file=$(LEAKSLOG) \
-            --verbose \
-            --quiet
+            --verbose
 
 # **************************************************************************** #
 #    SOURCES
@@ -114,19 +113,20 @@ debug: CFLAGS += $(DEBUGFLAGS)
 debug: re
 
 nm:
-	$(foreach d, $(HEADERDIR), $(foreach h, $(wildcard $(d)/*), \
-		norminette -R CheckDefine $(h);))
-	$(foreach d, $(SOURCEDIR), $(foreach s, $(wildcard $(d)/*), \
-		norminette -R CheckForbiddenSourceHeader $(s);))
+ifneq ($(shell command -v norminette >/dev/null 2>&1 && echo 1 || echo 0), 1)
+	@printf "$(R)$(B)Error: norminette: $(Y)command not found$(T)\n"; exit 1
+endif
+	$(foreach h, $(HEADERDIR), norminette -R CheckDefine $(h))
+	$(foreach s, $(SOURCEDIR), norminette -R CheckForbiddenSourceHeader $(s))
 
 leaks: all
 	valgrind $(VLGFLAGS) $(TESTCASE)
-	@$(RM) $(OUTFILE)
 	$(call report_cmd, $(LEAKSLOG))
+	@$(RM) $(OUTFILE)
 
 define report_cmd
 	$(SCREENCLEAR)
-	cat $1 | tail -n +4 | cut --complement -d' ' -f1
+	sed -n '/ERROR SUMMARY/,$$p' $1 | cut --complement -d' ' -f1
 endef
 
 # **************************************************************************** #
@@ -188,8 +188,8 @@ $(foreach build, $(BUILDDIR), $(eval $(call build_cmd, $(build))))
 #    PHONY
 # **************************************************************************** #
 
-.PHONY: all libft re
-.PHONY: debug leaks run nm
+.PHONY: all libft re nm
+.PHONY: run debug leaks
 .PHONY: clean fclean
 
 .SILENT:
